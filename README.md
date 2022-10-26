@@ -5,17 +5,12 @@ This is a starter project for using [ZenStack](https://github.com/zenstackhq/zen
 First create a project from this starter:
 
 ```bash
-npx create-next-app [project-name] -e https://github.com/zenstackhq/nextjs-auth-starter
+npx create-next-app [project-name] --use-npm -e https://github.com/zenstackhq/nextjs-auth-starter
+
 cd [project-name]
 ```
 
-Then install dependencies:
-
-```bash
-npm i
-```
-
-Now run ZenStack generator:
+Run ZenStack generator:
 
 ```
 npm run generate
