@@ -1,45 +1,45 @@
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+    provider = "sqlite"
+    url = "file:./dev.db"
 }
 
 /*
  * User model
  */
 model User {
-  id String @id @default(cuid())
-  email String @unique
-  emailVerified DateTime?
-  password String
-  name String?
-  posts Post[]
+    id String @id @default(cuid())
+    email String @unique
+    emailVerified DateTime?
+    password String
+    name String?
+    posts Post[]
 
-  // everybody can signup
-  @@allow('create', true)
+    // everybody can signup
+    @@allow('create', true)
 
-  // can be read by self
-  @@allow('read', auth() == this)
+    // can be read by self
+    @@allow('read', auth() == this)
 
-  // can only be updated and deleted by self
-  @@allow('update,delete', auth() == this) }
+    // can only be updated and deleted by self
+    @@allow('update,delete', auth() == this) 
+}
 
 /*
  * Post model
  */
 model Post {
-  id String @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title String
-  content String
-  published Boolean @default(false)
-  viewCount Int @default(0)
-  author User? @relation(fields: [authorId], references: [id])
-  authorId String?
+    id String @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    title String
+    content String
+    published Boolean @default(false)
+    author User? @relation(fields: [authorId], references: [id])
+    authorId String?
 
-  // must signin to CRUD any post
-  @@deny('all', auth() == null)
+    // must signin to CRUD any post
+    @@deny('all', auth() == null)
 
-  // allow CRUD by author
-  @@allow('all', author == auth())
+    // allow CRUD by author
+    @@allow('all', author == auth())
 }
