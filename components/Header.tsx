@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 const Header: React.FC = () => {
     const router = useRouter();
@@ -27,7 +27,9 @@ const Header: React.FC = () => {
                     <a onClick={() => signOut()}>Signout</a>
                 )}
                 {status === 'unauthenticated' && (
-                    <a onClick={() => signIn()}>Signin</a>
+                    <Link href="/signup">
+                        <a>Signup</a>
+                    </Link>
                 )}
                 <Link href="/create">
                     <a data-active={isActive('/create')}>+ Create draft</a>
