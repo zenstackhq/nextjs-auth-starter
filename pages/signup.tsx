@@ -32,8 +32,9 @@ const SignUp: React.FC = () => {
             } else {
                 console.error('Signin failed:', signInResult?.error);
             }
-        } catch (error) {
-            console.error(error);
+        } catch (error: any) {
+            alert(`Signup failed: ${error.info?.message}`);
+            console.error(`Signup failed: ${error.info?.message}`);
         }
     };
 
@@ -110,6 +111,9 @@ const SignUp: React.FC = () => {
                     border: 0;
                     padding: 1rem 2rem;
                     cursor: pointer;
+                }
+                input[type='submit']:disabled {
+                    cursor: not-allowed;
                 }
                 .signin {
                     cursor: pointer;

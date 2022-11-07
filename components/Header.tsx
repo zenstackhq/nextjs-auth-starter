@@ -24,7 +24,7 @@ const Header: React.FC = () => {
             </div>
             <div className="right">
                 {status === 'authenticated' && (
-                    <a onClick={() => signOut()}>Signout</a>
+                    <a onClick={() => signOut({ callbackUrl: '/' })}>Signout</a>
                 )}
                 {status === 'unauthenticated' && (
                     <Link href="/signup">
