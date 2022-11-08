@@ -3,6 +3,7 @@ import Router from 'next/router';
 import Layout from '../components/Layout';
 import { useUser } from '@zenstackhq/runtime/hooks';
 import { signIn } from 'next-auth/react';
+import { ServerErrorCode } from '@zenstackhq/runtime/client';
 
 const SignUp: React.FC = () => {
     const [name, setName] = useState('');
@@ -33,8 +34,14 @@ const SignUp: React.FC = () => {
                 console.error('Signin failed:', signInResult?.error);
             }
         } catch (error: any) {
-            alert(`Signup failed: ${error.info?.message}`);
-            console.error(`Signup failed: ${error.info?.message}`);
+            if (
+                error.info.code === ServerErrorCode.UNIQUE_CONSTRAINT_VIOLATION
+            ) {
+                alert('User already exists');
+            } else {
+                alert(`Signup failed: ${error.info?.message}`);
+                console.error(`Signup failed: ${error.info?.message}`);
+            }
         }
     };
 
