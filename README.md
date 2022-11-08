@@ -7,7 +7,7 @@ It's extended from [Prisma's Next.js Starter](https://github.com/prisma/prisma-e
 First create a project from this starter:
 
 ```bash
-npx create-next-app [project-name] --use-npm -e https://github.com/zenstackhq/nextjs-auth-starter
+npx create-next-app --use-npm -e https://github.com/zenstackhq/nextjs-auth-starter [project-name]
 
 cd [project-name]
 ```
