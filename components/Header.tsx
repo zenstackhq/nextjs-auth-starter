@@ -8,7 +8,7 @@ const Header: React.FC = () => {
     const isActive: (pathname: string) => boolean = (pathname) =>
         router.pathname === pathname;
 
-    const { data: session, status } = useSession();
+    const { status } = useSession();
 
     return (
         <nav>
@@ -27,8 +27,8 @@ const Header: React.FC = () => {
                     <a onClick={() => signOut({ callbackUrl: '/' })}>Signout</a>
                 )}
                 {status === 'unauthenticated' && (
-                    <Link href="/signup">
-                        <a>Signup</a>
+                    <Link href="/signin">
+                        <a>Signin</a>
                     </Link>
                 )}
                 <Link href="/create">
@@ -40,6 +40,8 @@ const Header: React.FC = () => {
                     display: flex;
                     padding: 2rem;
                     align-items: center;
+                    flex-wrap: wrap;
+                    gap: 16px;
                 }
 
                 .bold {

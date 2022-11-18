@@ -8,13 +8,13 @@ datasource db {
  */
 model User {
     id String @id @default(cuid())
-    email String @unique
+    email String @unique @email
     emailVerified DateTime?
 
     // @password indicates the field is a password and its
     // value should be hashed (with bcrypt) before storing
     // @omit indicates the field should not be returned on read
-    password String @password @omit
+    password String @password @omit @length(8, 16)
     name String?
     posts Post[]
 
@@ -35,7 +35,7 @@ model Post {
     id String @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    title String
+    title String @length(1, 256)
     content String
     published Boolean @default(false)
     author User? @relation(fields: [authorId], references: [id])
