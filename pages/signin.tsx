@@ -1,49 +1,24 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
 import Layout from '../components/Layout';
-import { useUser } from '@zenstackhq/runtime/hooks';
 import { signIn } from 'next-auth/react';
-import { ServerErrorCode, ValidationError } from '@zenstackhq/runtime/client';
 
-const SignUp: React.FC = () => {
-    const [name, setName] = useState('');
+const SignIn: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { create: signup } = useUser();
-
     const submitData = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        try {
-            await signup({
-                data: {
-                    email,
-                    name,
-                    password,
-                },
-            });
-
-            const signInResult = await signIn('credentials', {
-                redirect: false,
-                email,
-                password,
-            });
-            if (signInResult?.ok) {
-                await Router.push('/');
-            } else {
-                console.error('Signin failed:', signInResult?.error);
-            }
-        } catch (error: any) {
-            if (error instanceof ValidationError) {
-                alert(`Input data is invalid: ${error.message}`);
-            } else if (
-                error.info?.code === ServerErrorCode.UNIQUE_CONSTRAINT_VIOLATION
-            ) {
-                alert('User already exists');
-            } else {
-                alert(`Signup failed: ${error.info?.message}`);
-                console.error(`Signup failed: ${error.info?.message}`);
-            }
+        const signInResult = await signIn('credentials', {
+            redirect: false,
+            email,
+            password,
+        });
+        if (signInResult?.ok) {
+            await Router.push('/');
+        } else {
+            alert(`Signin failed. Please check your email and password.`);
+            console.error('Signin failed:', signInResult?.error);
         }
     };
 
@@ -51,14 +26,7 @@ const SignUp: React.FC = () => {
         <Layout>
             <div className="page">
                 <form onSubmit={submitData}>
-                    <h1>Signup user</h1>
-                    <input
-                        autoFocus
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Name"
-                        type="text"
-                        value={name}
-                    />
+                    <h1>Signin</h1>
                     <input
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email address"
@@ -72,9 +40,9 @@ const SignUp: React.FC = () => {
                         value={password}
                     />
                     <input
-                        disabled={!name || !email || !password}
+                        disabled={!email || !password}
                         type="submit"
-                        value="Signup"
+                        value="Signin"
                     />
                     <a
                         className="back"
@@ -85,12 +53,12 @@ const SignUp: React.FC = () => {
                     </a>
                 </form>
                 <p>
-                    Already have an account?{' '}
+                    {"Don't have an account yet? "}
                     <a
-                        className="signin"
-                        onClick={() => Router.push('/signin')}
+                        className="signup"
+                        onClick={() => Router.push('/signup')}
                     >
-                        Signin now
+                        Signup now
                     </a>
                     .
                 </p>
@@ -124,7 +92,7 @@ const SignUp: React.FC = () => {
                 input[type='submit']:disabled {
                     cursor: not-allowed;
                 }
-                .signin {
+                .signup {
                     cursor: pointer;
                     text-decoration: underline;
                 }
@@ -136,4 +104,4 @@ const SignUp: React.FC = () => {
     );
 };
 
-export default SignUp;
+export default SignIn;

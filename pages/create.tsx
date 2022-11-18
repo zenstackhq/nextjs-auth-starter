@@ -28,7 +28,8 @@ const Draft: React.FC = () => {
                 },
             });
             await Router.push('/drafts');
-        } catch (error) {
+        } catch (error: any) {
+            alert(`Failed to create draft: ${error.message}`);
             console.error(error);
         }
     };
