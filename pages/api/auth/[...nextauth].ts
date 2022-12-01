@@ -1,10 +1,10 @@
-import NextAuth, { NextAuthOptions, User } from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import {
     authorize,
     NextAuthAdapter as Adapter,
-} from '@zenstackhq/runtime/auth';
-import service from '@zenstackhq/runtime';
+} from '@zenstackhq/runtime/server/auth';
+import service from '@zenstackhq/runtime/server';
 
 export const authOptions: NextAuthOptions = {
     // use the ZenStack next-auth adapter for user identity persistence

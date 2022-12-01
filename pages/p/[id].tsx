@@ -3,7 +3,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import Layout from '../../components/Layout';
 import { useRouter } from 'next/router';
-import { usePost } from '@zenstackhq/runtime/hooks';
+import { usePost } from '@zenstackhq/runtime/client';
 
 const Post: React.FC = () => {
     const { get, update, del } = usePost();
