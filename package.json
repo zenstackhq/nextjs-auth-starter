@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@prisma/client": "^4.7.0",
-        "@zenstackhq/runtime": "^0.4.0-pre.1",
+        "@zenstackhq/runtime": "^0.4.0",
         "next": "^12.3.0",
         "next-auth": "^4.15.0",
         "react": "18.2.0",
@@ -27,6 +27,6 @@
         "eslint": "8.26.0",
         "eslint-config-next": "^12.3.0",
         "typescript": "4.8.4",
-        "zenstack": "^0.4.0-pre.1"
+        "zenstack": "^0.4.0"
     }
 }
