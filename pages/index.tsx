@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
-import { usePost } from '@zenstackhq/runtime/hooks';
+import { usePost } from '@zenstackhq/runtime/client';
 import { useSession } from 'next-auth/react';
 
 const Blog: React.FC = () => {

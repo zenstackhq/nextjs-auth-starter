@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import Router from 'next/router';
-import { usePost } from '@zenstackhq/runtime/hooks';
+import { usePost } from '@zenstackhq/runtime/client';
 import { useSession } from 'next-auth/react';
 
 const Draft: React.FC = () => {

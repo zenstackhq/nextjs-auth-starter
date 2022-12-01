@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
 import Layout from '../components/Layout';
-import { useUser } from '@zenstackhq/runtime/hooks';
+import { useUser } from '@zenstackhq/runtime/client';
 import { signIn } from 'next-auth/react';
 import { ServerErrorCode, ValidationError } from '@zenstackhq/runtime/client';
 
