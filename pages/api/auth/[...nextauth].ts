@@ -1,9 +1,6 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import {
-    authorize,
-    NextAuthAdapter as Adapter,
-} from '@zenstackhq/runtime/server/auth';
+import { authorize, Adapter } from '@zenstackhq/next-auth';
 import service from '@zenstackhq/runtime/server';
 
 export const authOptions: NextAuthOptions = {
